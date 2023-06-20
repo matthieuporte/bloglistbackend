@@ -1,0 +1,33 @@
+### Create User
+POST http://localhost:3002/api/users
+Content-Type: application/json
+
+{
+  "username": "jonero6",
+  "name": "Matthieu Porte",
+  "password": "motdepasse"
+}
+
+### Login
+POST http://localhost:3002/api/login
+Content-Type: application/json
+
+{
+  "username": "jonero6",
+  "password": "motdepasse"
+}
+
+> {%
+  client.global.set("auth_token", response.body.token);
+%}
+
+
+### Create blog post
+POST http://localhost:3002/api/blogs
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title":"how to log in 2",
+  "url": "internet2.com"
+}
